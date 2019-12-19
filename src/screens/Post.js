@@ -1,11 +1,10 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Linking } from 'react-native';
 import { Card, Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default Post = ({navigation}) => {
   const post = navigation.getParam('post');
-  console.log(post)
   return (
     <View style={styles.root}>
       <Header
@@ -20,8 +19,10 @@ export default Post = ({navigation}) => {
       rightComponent={<Text style={{}}>{post.sub}</Text>}
     />
       <Card title={post.title}>
-        {post.media.type === 'img' && post.media.url !== '' &&
-        <Image source={{uri: post.media.url}} style={styles.image}/>}
+        {post.media.type === 'img' && post.media.url !== '' ?
+        <Image source={{uri: post.media.url}} style={styles.image}/> : null}
+        {/*post.media.type === 'link' && postMessage.medial.url !== '' ?
+        <Linking ></Linking> : null*/}
         <Text>{post.message}</Text>
         <Text>Création le {post.dateTime /* TODO : faire un travail sur la data */}</Text>
         <Text>Mis à jour le {post.lastUpdate /* TODO : faire un travail sur la data */}</Text>

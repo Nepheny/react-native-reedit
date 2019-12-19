@@ -9,13 +9,13 @@ export default Home = ({navigation}) => {
 
   const getPosts = async () => {
     try {
-      // faire qqch de dynamique pour la recherche
+      // TODO : faire qqch de dynamique pour la recherche
       const req = await fetch(`${config.urlApi}/posts?fromApp=1`);
       const posts = await req.json();
-      console.log(posts.result)
       setData(posts.result);
       setDataLoaded(true);
     } catch (err) {
+      // TODO : gérer l'erreur
       console.log(err);
       setDataLoaded(false);
     }
@@ -28,7 +28,9 @@ export default Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
-        {dataLoaded ? data.map((post, i) => <PostDetail navigation={navigation} post={post} key={i}/>) : <Text>ERREUR</Text>}
+        {dataLoaded ?
+          data.map((post, i) => <PostDetail navigation={navigation} post={post} key={i}/>) :
+          <Text>ERREUR</Text>}
       </ScrollView>
     </SafeAreaView>
   );
